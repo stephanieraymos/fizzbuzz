@@ -1,4 +1,5 @@
-// custom react hook
+import React, { useMemo, useState, useCallback } from "react";
+
 const useFizzbuzz = (rules) => {
   const [number, setNumber] = useState(0);
   const result = useMemo(() => fizzbuzz(number), [number]);
@@ -9,3 +10,5 @@ const useFizzbuzz = (rules) => {
 
   return [result, handleClick];
 };
+
+export default useFizzbuzz;

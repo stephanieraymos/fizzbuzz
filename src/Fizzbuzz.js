@@ -1,17 +1,9 @@
-import React from "react";
-import useFizzbuzz from "./useFizzbuzz";
+import React, { useMemo, useState, useCallback } from "react";
 
 // functional component
-const NextNumber = ({ rules }) => {
+const NextNumber = ({ rules, fizzbuzz }) => {
   let [result, handleClick] = useFizzbuzz(rules);
   // {3: "fizz", 5: "buzz", 15: "fizzbuzz"}
-  function fizzbuzz(number, rules) {
-    for (let [condition, result] of rules.entries()) {
-      if (number % condition === 0) return result;
-    }
-
-    return number;
-  }
 
   function testFizzbuzz(assert) {
     let rules = { 3: "fizz", 5: "buzz", 15: "fizzbuzz" };
@@ -31,10 +23,20 @@ const NextNumber = ({ rules }) => {
   );
 };
 
+export const useFizzbuzz = ({ fizzbuzz }) => {
+  const [number, setNumber] = useState(0);
+  const result = useMemo(() => fizzbuzz(number), [number]);
+
+  const handleClick = useCallback((event) => {
+    setNumber((number) => number + 1);
+  });
+
+  return [result, handleClick];
+};
 // example input
-[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].forEach(
-  fizzbuzz
-);
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].forEach(
+//   fizzbuzz
+// );
 
 // expected output
 // If number is a multiple of 3 (1, 3, 6, 9...) then console.log(fizz)
@@ -49,3 +51,5 @@ const NextNumber = ({ rules }) => {
 //7
 //8
 //fizz
+
+export default NextNumber;
