@@ -1,3 +1,3 @@
 # Fizzbuzz
 
-# Fizzbuzz solutions
+# Simple fizzbuzz solutions
