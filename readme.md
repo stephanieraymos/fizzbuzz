@@ -1,2 +1,3 @@
-# Fizzbuzz# fizzbuzz
-# fizzbuzz
+# Fizzbuzz
+
+# Fizzbuzz solutions
